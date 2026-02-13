@@ -8,7 +8,7 @@ import (
 	"github.com/sasanktumpati/ask/internal/config"
 )
 
-const version = "0.2.1"
+const version = "0.2.2"
 
 func printHelp(w io.Writer, topic string, cfgPath string) {
 	switch topic {
