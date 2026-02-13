@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "current_provider": "",
+  "providers": {
+    "anthropic": {
+      "api_key": "",
+      "model": "",
+      "api_key_env": "ANTHROPIC_API_KEY"
+    },
+    "gemini": {
+      "api_key": "",
+      "model": "",
+      "api_key_env": "GEMINI_API_KEY"
+    },
+    "ollama": {
+      "api_key": "",
+      "model": "",
+      "base_url": "http://127.0.0.1:11434"
+    },
+    "openai": {
+      "api_key": "",
+      "model": "gpt-5-nano",
+      "api_key_env": "OPENAI_API_KEY"
+    },
+    "openrouter": {
+      "api_key": "",
+      "model": "",
+      "api_key_env": "OPENROUTER_API_KEY"
+    }
+  },
+  "custom_providers": {
+    "myproxy": {
+      "base_url": "https://llm.example.com/v1",
+      "api_key": "",
+      "model": "",
+      "api_key_env": "MYPROXY_API_KEY",
+      "headers": {
+        "X-Client-Name": "ask"
+      }
+    }
+  },
+  "render_markdown": true
+}
