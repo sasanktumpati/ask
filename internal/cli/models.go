@@ -7,7 +7,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"ask/internal/providers"
+	"github.com/sasanktumpati/ask/internal/providers"
 )
 
 func (a *App) runModels(args []string) error {

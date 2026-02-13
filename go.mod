@@ -1,4 +1,4 @@
-module ask
+module github.com/sasanktumpati/ask
 
 go 1.26.0
 

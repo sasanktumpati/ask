@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"ask/internal/config"
+	"github.com/sasanktumpati/ask/internal/config"
 
 	"golang.org/x/term"
 )

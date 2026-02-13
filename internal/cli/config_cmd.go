@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"ask/internal/config"
+	"github.com/sasanktumpati/ask/internal/config"
 )
 
 func (a *App) runConfig(args []string) error {

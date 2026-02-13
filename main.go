@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"ask/internal/cli"
+	"github.com/sasanktumpati/ask/internal/cli"
 )
 
 func main() {

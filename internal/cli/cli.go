@@ -12,11 +12,11 @@ import (
 	"sort"
 	"strings"
 
-	"ask/internal/assistant"
-	"ask/internal/config"
-	"ask/internal/providers"
-	"ask/internal/render"
-	"ask/internal/runner"
+	"github.com/sasanktumpati/ask/internal/assistant"
+	"github.com/sasanktumpati/ask/internal/config"
+	"github.com/sasanktumpati/ask/internal/providers"
+	"github.com/sasanktumpati/ask/internal/render"
+	"github.com/sasanktumpati/ask/internal/runner"
 
 	"golang.org/x/term"
 )

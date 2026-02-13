@@ -5,10 +5,10 @@ import (
 	"io"
 	"text/tabwriter"
 
-	"ask/internal/config"
+	"github.com/sasanktumpati/ask/internal/config"
 )
 
-const version = "0.2.0"
+const version = "0.2.1"
 
 func printHelp(w io.Writer, topic string, cfgPath string) {
 	switch topic {

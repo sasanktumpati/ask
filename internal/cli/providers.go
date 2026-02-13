@@ -6,7 +6,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"ask/internal/config"
+	"github.com/sasanktumpati/ask/internal/config"
 )
 
 func (a *App) runProviders(args []string) error {
