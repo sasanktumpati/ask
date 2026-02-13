@@ -173,12 +173,14 @@ func (a *App) runAsk(args []string) error {
 	ctx, cancel := context.WithTimeout(context.Background(), opts.Timeout)
 	defer cancel()
 
+	stopSpinner := startSpinner(!opts.AsJSON && isTerminalWriter(a.stderr), a.stderr, "Thinking")
 	resp, err := client.Ask(ctx, providers.AskRequest{
 		Model:      model,
 		Prompt:     prompt,
 		Question:   question,
 		ExpectJSON: true,
 	})
+	stopSpinner()
 	if err != nil {
 		return err
 	}
@@ -256,14 +258,11 @@ func (a *App) saveConfig() error {
 
 func terminalWidth(w io.Writer) int {
 	const fallback = 100
-	fdw, ok := w.(interface{ Fd() uintptr })
-	if !ok {
+	if !isTerminalWriter(w) {
 		return fallback
 	}
+	fdw := w.(interface{ Fd() uintptr })
 	fd := int(fdw.Fd())
-	if !term.IsTerminal(fd) {
-		return fallback
-	}
 	width, _, err := term.GetSize(fd)
 	if err != nil || width <= 0 {
 		return fallback

@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/chzyer/readline"
+	"golang.org/x/term"
 )
 
 // RunOptions controls command prefill behavior and IO streams.
@@ -39,8 +40,8 @@ func PromptAndRun(opts RunOptions) error {
 
 	cfg := &readline.Config{
 		Prompt:          "$ ",
-		InterruptPrompt: "^C",
-		EOFPrompt:       "",
+		InterruptPrompt: "\n",
+		EOFPrompt:       "\n",
 		Stdout:          opts.Stdout,
 		Stderr:          opts.Stderr,
 	}
@@ -58,14 +59,17 @@ func PromptAndRun(opts RunOptions) error {
 
 	input, err := rl.ReadlineWithDefault(cmd)
 	if err == readline.ErrInterrupt {
+		clearPromptLine(opts.Stdout)
+		fmt.Fprintln(opts.Stdout)
 		if copyErr := copyToClipboard(cmd, runtime.GOOS); copyErr == nil {
-			fmt.Fprintln(opts.Stdout, "command copied to clipboard")
+			fmt.Fprintln(opts.Stdout, "Command copied to clipboard.")
 		} else {
-			fmt.Fprintln(opts.Stdout, "command cancelled")
+			fmt.Fprintln(opts.Stdout, "Command cancelled.")
 		}
 		return nil
 	}
 	if err == io.EOF {
+		clearPromptLine(opts.Stdout)
 		return nil
 	}
 	if err != nil {
@@ -92,6 +96,21 @@ func PromptAndRun(opts RunOptions) error {
 	}
 
 	return execCmd.Run()
+}
+
+func clearPromptLine(w io.Writer) {
+	if !isTerminalWriter(w) {
+		return
+	}
+	fmt.Fprint(w, "\r\033[2K\r")
+}
+
+func isTerminalWriter(w io.Writer) bool {
+	fdw, ok := w.(interface{ Fd() uintptr })
+	if !ok {
+		return false
+	}
+	return term.IsTerminal(int(fdw.Fd()))
 }
 
 type clipboardCmd struct {
