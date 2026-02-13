@@ -5,7 +5,7 @@ go 1.26.0
 require (
 	github.com/charmbracelet/glamour v0.6.0
 	github.com/chzyer/readline v1.5.1
-	golang.org/x/term v0.28.0
+	golang.org/x/term v0.30.0
 )
 
 require (
@@ -24,6 +24,6 @@ require (
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/yuin/goldmark v1.7.8 // indirect
 	github.com/yuin/goldmark-emoji v1.0.5 // indirect
-	golang.org/x/net v0.33.0 // indirect
+	golang.org/x/net v0.38.0 // indirect
 	golang.org/x/sys v0.41.0 // indirect
 )
